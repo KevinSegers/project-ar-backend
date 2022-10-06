@@ -6,6 +6,6 @@ This repository contains the project of Advanced programming topics of coding mi
 
 The example architecture is as follows:
 
-- TODO
+![alt text](https://github.com/KevinSegers/project-ar-backend/blob/master/schemaProject.png)
 
 One _Edge service_ `brank-edge-service` will connect to two lower services `book-service` and `item-service` to request information which it will then process and combine into a single response to the user. The user is only supposed to communicate with the `brank-edge-service`.
