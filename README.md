@@ -6,7 +6,7 @@ This repository contains the project of Advanced programming topics of coding mi
 
 The example architecture is as follows:
 
-![alt text](https://github.com/KevinSegers/project-ar-backend/blob/76facceb5a05f705ffb2bc1cced98f5a0e0b3a3c/SchemaProject.png)
+![alt text](https://raw.githubusercontent.com/KevinSegers/project-ar-backend/master/Schema%20Project.png)
 
 One _Edge service_ `brank-edge-service` will connect to two lower services `book-service` and `item-service` to request information which it will then process and combine into a single response to the user. The user is only supposed to communicate with the `brank-edge-service`.
 
