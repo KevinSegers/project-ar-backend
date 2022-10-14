@@ -1,58 +1,58 @@
 services:
-  mongo:
+
     image: mongo:latest
     ports:
       - 27017:27017
     volumes:
       - mongodb_data_container:/data/db
 
-  mysql:
-    image: mysql:latest
-    ports:
+    mysql:
+      image: mysql:latest
+      ports:
       - 3306:3306
-    volumes:
-      - mysql_data_container:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: abc123
+      volumes:
+        - mysql_data_container:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: abc123
 
-  page-service:
-    depends_on:
-      - mongo
-    image: KevinSegers/project-ar-backend/page-service
-    ports:
-      - 8052:8052
-    links:
-      - mongo
-    environment:
-      MONGODB_PORT: 27017
-      MONGODB_HOST: mongo
+    page-service:
+      depends_on:
+       - mongo
+      image: KevinSegers/project-ar-backend/page-service
+      ports:
+        - 8052:8052
+      links:
+       - mongo
+      environment:
+        MONGODB_PORT: 27017
+        MONGODB_HOST: mongo
 
-  item-service:
-    depends_on:
-      - mysql
-    image: KevinSegers/project-ar-backend/item-service
-    ports:
-      - 8051:8051
-    links:
-      - mysql
-    environment:
-      MYSQL_DB_USERNAME: root
-      MYSQL_DB_PASSWORD: abc123
-      MYSQL_DB_HOST: mysql
+    item-service:
+      depends_on:
+        - mysql
+      image: KevinSegers/project-ar-backend/item-service
+      ports:
+        - 8051:8051
+      links:
+        - mysql
+      environment:
+        MYSQL_DB_USERNAME: root
+        MYSQL_DB_PASSWORD: abc123
+        MYSQL_DB_HOST: mysql
 
-  brank-edge-service:
-    depends_on:
-      - item-service
-      - page-service
-    image: KevinSegers/project-ar-backend/brank-edge-service
-    ports:
-      - 8050:8050
-    links:
-      - item-service
-      - page-service
-    environment:
-      PAGE_SERVICE_BASEURL: page-service:8052
-      ITEM__SERVICE_BASEURL: item-service:8051
+    brank-edge-service:
+      depends_on:
+        - item-service
+        - page-service
+      image: KevinSegers/project-ar-backend/brank-edge-service
+      ports:
+        - 8050:8050
+      links:
+        - item-service
+        - page-service
+      environment:
+        PAGE_SERVICE_BASEURL: page-service:8052
+        ITEM__SERVICE_BASEURL: item-service:8051
 
 volumes:
   mongodb_data_container:
