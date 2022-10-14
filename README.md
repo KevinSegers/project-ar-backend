@@ -17,4 +17,4 @@ One _Edge service_ `brank-edge-service` will connect to two lower services `book
 
 ### Set up the Docker container with the MongoDB database:
 
-`docker run --name book-mongodb -p 27017-27019:27017-27019 -d mongo`
+`docker run --name page-mongodb -p 27017-27019:27017-27019 -d mongo`
