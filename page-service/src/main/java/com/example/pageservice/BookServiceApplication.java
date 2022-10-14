@@ -1,4 +1,4 @@
-package com.example.pagesservice;
+package com.example.pageservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

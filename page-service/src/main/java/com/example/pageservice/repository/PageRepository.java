@@ -1,6 +1,6 @@
-package com.example.pagesservice.repository;
+package com.example.pageservice.repository;
 
-import com.example.pagesservice.model.Page;
+import com.example.pageservice.model.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
