@@ -1,8 +1,8 @@
-package com.example.pagesservice.controller;
+package com.example.pageservice.controller;
 
-import com.example.pagesservice.model.Page;
+import com.example.pageservice.model.Page;
 
-import com.example.pagesservice.repository.PageRepository;
+import com.example.pageservice.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

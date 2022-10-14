@@ -1,4 +1,4 @@
-package com.example.pagesservice.model;
+package com.example.pageservice.model;
 
 import org.springframework.data.annotation.Id;
 
