@@ -11,9 +11,11 @@ public class Item {
     @Column(unique=true)
     private String name;
 
+    private Category category;
+
     public Item(){}
 
-    public Item(String name){
+    public Item(String name, Category category){
         this.name = name;
     }
 
@@ -21,16 +23,15 @@ public class Item {
 
     public void setId(int id){this.id = id;}
 
-    public String getName(return name;)
+    public String getName(){return name;}
 
     public void setName(String name){this.name = name;}
 
+    public Category getCategory() {
+        return category;
+    }
 
-
-
-
-
-
-
-
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

@@ -2,43 +2,45 @@ package com.example.itemservice.controller;
 
 
 import ch.qos.logback.core.sift.AppenderTracker;
+import com.example.itemservice.model.Category;
 import com.example.itemservice.model.Item;
-import com.example.itemervice.repository.ItemRepository;
+import com.example.itemservice.repository.ItemRepository;
 import org.hibernate.result.UpdateCountOutput;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
 
 
 @RestController
 public class ItemController {
 
         @Autowired
-        private ItemController itemRepository;
+        private ItemRepository itemRepository;
 
         @PostConstruct
         public void fillDB(){
             if(itemRepository.count()==0){
-                itemRepository.save(new Item("Nijntje"));
-                itemRepository.save(new Item("vader"));
-                itemRepository.save(new Item("moeder"));
-                itemRepository.save(new Item("auto"));
-                itemRepository.save(new Item("schommel"));
-                itemRepository.save(new Item("rekstok"));
-                itemRepository.save(new Item("ringen"));
-                itemRepository.save(new Item("glijbaan"));
-                itemRepository.save(new Item("trampoline"));
-                itemRepository.save(new Item("klimboom"));
-                itemRepository.save(new Item("wip"));
-                itemRepository.save(new Item("bessensap"));
+                itemRepository.save(new Item("Nijntje", Category.PERSON));
+                itemRepository.save(new Item("vader", Category.PERSON));
+                itemRepository.save(new Item("moeder", Category.PERSON));
+                itemRepository.save(new Item("auto", Category.TRANSPORT));
+                itemRepository.save(new Item("schommel", Category.PLAYGROUND));
+                itemRepository.save(new Item("rekstok",  Category.PLAYGROUND));
+                itemRepository.save(new Item("ringen",  Category.PLAYGROUND));
+                itemRepository.save(new Item("glijbaan",  Category.PLAYGROUND));
+                itemRepository.save(new Item("trampoline",  Category.PLAYGROUND));
+                itemRepository.save(new Item("klimboom",  Category.PLAYGROUND));
+                itemRepository.save(new Item("wip",  Category.PLAYGROUND));
+                itemRepository.save(new Item("bessensap",  Category.FOOD));
             }
 
 
         }
 
         @GetMapping("/books/item/{name}")
-        public List<Item> getItemByName(@PathVariable String name){
+        public Item getItemByName(@PathVariable String name){
             return itemRepository.findItemByName(name);
         }
 
