@@ -14,6 +14,6 @@ public class BookController {
     @Value("${pageservice.baseurl}")
     private String pageServiceBaseUrl;
 
-    @Value("${itemservice.baseurl}")
-    private String itemServiceBaseUrl;
+    @Value("${bookservice.baseurl}")
+    private String bookServiceBaseUrl;
 }

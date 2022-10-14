@@ -6,7 +6,7 @@ public class Page {
 
     private String id;
     private int pageNumber;
-    private List<String> itemNames;
+    private List<String> items;
     private String text;
     private Boolean seen;
     private String bookTitle;
@@ -30,12 +30,12 @@ public class Page {
         this.pageNumber = pageNumber;
     }
 
-    public List<String> getItemNames() {
-        return itemNames;
+    public List<String> getItems() {
+        return items;
     }
 
-    public void setItemNames(List<String> itemNames) {
-        this.itemNames = itemNames;
+    public void setItems(List<String> items) {
+        this.items = items;
     }
 
     public String getText() {
