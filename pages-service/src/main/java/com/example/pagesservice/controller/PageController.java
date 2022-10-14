@@ -1,14 +1,13 @@
-package com.example.bookservice.controller;
+package com.example.pagesservice.controller;
 
-import com.example.bookservice.model.Page;
+import com.example.pagesservice.model.Page;
 
-import com.example.bookservice.repository.PageRepository;
+import com.example.pagesservice.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @RestController
 public class PageController {
@@ -34,15 +33,13 @@ public class PageController {
 
     @PutMapping("/pages")
     public Page updatePage(@RequestBody Page updatedPage){
-        Page retrievedPage = pageRepository.findPageByPageId(updatedPage.getPageId());
+        Page retrievedPage = pageRepository.findPageById(updatedPage.getId());
 
-        retrievedPage.setPageNumber(updatedPage.getISBN());
+        retrievedPage.setPageNumber(updatedPage.getPageNumber());
         retrievedPage.setItemNames(updatedPage.getItemNames());
         retrievedPage.setText(updatedPage.getText());
         retrievedPage.setSeen(updatedPage.isSeen());
         retrievedPage.setBookTitle(updatedPage.getBookTitle());
-
-
 
 
         pageRepository.save(retrievedPage);
@@ -51,14 +48,15 @@ public class PageController {
     }
 
     @DeleteMapping("/book/page/{pageId}")
-    public ResponseEntity deletePage(@PathVariable Integer pageId){
-        Page page = pageRepository.findPageByPageId(pageId);
-        if(page!=null){
+    public ResponseEntity deletePage(@PathVariable String pageId) {
+        Page page = pageRepository.findPageById(pageId);
+        if (page != null) {
             pageRepository.delete(page);
             return ResponseEntity.ok().build();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
+    }
 
 
 }

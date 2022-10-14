@@ -1,4 +1,4 @@
-package com.example.bookservice.model;
+package com.example.pagesservice.model;
 
 import org.springframework.data.annotation.Id;
 
@@ -61,11 +61,15 @@ public class Page {
         this.text = text;
     }
 
-    public Boolean getSeen() {
+    public Boolean isSeen() {
         return seen;
     }
 
     public void setSeen(Boolean seen) {
         this.seen = seen;
     }
+
+    public void setBookTitle(String bookTitle){this.bookTitle = bookTitle;}
+
+    public String getBookTitle(){return bookTitle;}
 }
