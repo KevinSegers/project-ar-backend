@@ -1,9 +1,9 @@
-name: Build, test and deliver container
+name: Build, test and deliver container to Docker Hub
 
 on: push
 
-jobs:
-  mongo-pages:
+services:
+  mongodb-pages:
     build:
       runs-on: ubuntu-latest
       name: Java 11 build, test, deliver container
@@ -31,12 +31,12 @@ jobs:
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
         - name: Docker Build
-          run: docker build -t ${{ secrets.DOCKER_USER }}/project-ar-backend/page-service-ex:latest .
+          run: docker build -t ${{ secrets.DOCKER_USER }}/project-ar-backend/page-service:latest .
 
         - name: Upload container to Docker Hub with Push
-          run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/page-service-ex:latest
+          run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/page-service:latest
 
-  sql-items:
+  sqldb-books:
     build:
       runs-on: ubuntu-latest
       name: Java 11 build, test, deliver container
@@ -52,26 +52,26 @@ jobs:
         - name: Start MySQL for integration test
           uses: mirromutth/mysql-action@v1.1
           with:
-          mysql database: 'pagedb_test' # Optional, default value is "test". The specified database which will be created.
+          mysql database: 'booksdb_test' # Optional, default value is "test". The specified database which will be created.
           mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
 
         - name: Build, test and package project
           env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinSegers/project-ar-backend/item-service
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinSegers/project-ar-backend/book-service
 
         - name: Docker login
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
         - name: Docker Build
-          run: docker build -t ${{ secrets.DOCKER_USER }}/project-ar-backend/item-service .
+          run: docker build -t ${{ secrets.DOCKER_USER }}/project-ar-backend/book-service .
 
         - name: Upload container to Docker Hub with Push
-          run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/item-service
+          run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/book-service
 
   brank-edge:
-    needs: [mongo-pages, sql-items]
+    needs: [mongodb-pages, sqldb-books]
     build:
       runs-on: ubuntu-latest
       name: Java 11 build, test, deliver container
