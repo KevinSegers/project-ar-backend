@@ -4,6 +4,7 @@ on: push
 
 services:
   mongodb-pages:
+    name: MongoDB Pages
     build:
       runs-on: ubuntu-latest
       name: Java 11 build, test, deliver container
@@ -37,6 +38,7 @@ services:
           run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/page-service:latest
 
   sqldb-books:
+    name: SQL Database Books
     build:
       runs-on: ubuntu-latest
       name: Java 11 build, test, deliver container
@@ -71,6 +73,7 @@ services:
           run: docker push ${{ secrets.DOCKER_USER }}/project-ar-backend/book-service
 
   brank-edge:
+    name: Brank Edge
     needs: [mongodb-pages, sqldb-books]
     build:
       runs-on: ubuntu-latest
