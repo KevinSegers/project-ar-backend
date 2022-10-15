@@ -2,7 +2,7 @@ name: Build, test and deliver container to Docker Hub
 
 on: push
 
-services:
+jobs:
   mongodb-pages:
     name: MongoDB Pages
     build:
