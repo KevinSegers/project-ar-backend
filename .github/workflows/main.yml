@@ -21,7 +21,7 @@ jobs:
             mongodb-version: 4.2
         - name: Build, test and package project
           env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+            GITHUB_TOKEN: ${{ secrets.G_TOKEN }}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinSegers/project-ar-backend/page-service
         - name: Docker login
@@ -50,7 +50,7 @@ jobs:
 #          mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
 #        - name: Build, test and package project
 #          env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          GITHUB_TOKEN: ${{ secrets.G_TOKEN }}  # Needed to get PR information, if any
 #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinSegers/project-ar-backend/book-service
 #        - name: Docker login
@@ -75,7 +75,7 @@ jobs:
 #            java-version: 11
 #        - name: Build, test and package project
 #          env:
-#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#            GITHUB_TOKEN: ${{ secrets.G_TOKEN }}  # Needed to get PR information, if any
 #            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KevinSegers/project-ar-backend/brank-edge-service
 #        - name: Docker login
