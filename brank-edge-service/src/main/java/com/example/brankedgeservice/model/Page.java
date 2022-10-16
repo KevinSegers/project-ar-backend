@@ -7,7 +7,6 @@ public class Page {
     private String id;
     private int pageNumber;
     private List<String> items;
-    private String text;
     private Boolean seen;
     private String bookTitle;
 
@@ -36,14 +35,6 @@ public class Page {
 
     public void setItems(List<String> items) {
         this.items = items;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public Boolean getSeen() {
