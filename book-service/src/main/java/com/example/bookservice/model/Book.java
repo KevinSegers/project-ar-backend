@@ -12,14 +12,27 @@ public class Book {
     @Column(unique=true)
     private String title;
 
+    private String author;
+
+    private Category category;
+
     private boolean favorite;
+
+    private String coverImageUrl ;
+
+    private String backCoverImageUrl ;
+
+
 
     public Book(){}
 
-    public Book(int id, String title, boolean favorite) {
-        this.id = id;
+    public Book( String title, String author, Category category, boolean favorite, String coverImageUrl, String backCoverImageUrl) {
         this.title = title;
+        this.author = author;
+        this.category = category;
         this.favorite = favorite;
+        this.coverImageUrl = coverImageUrl;
+        this.backCoverImageUrl = backCoverImageUrl;
     }
 
     public int getId() {
@@ -38,11 +51,43 @@ public class Book {
         this.title = title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public boolean isFavorite() {
         return favorite;
     }
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+    public String getBackCoverImageUrl() {
+        return backCoverImageUrl;
+    }
+
+    public void setBackCoverImageUrl(String backCoverImageUrl) {
+        this.backCoverImageUrl = backCoverImageUrl;
     }
 }
