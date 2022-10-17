@@ -18,6 +18,8 @@ public class Book {
 
     private boolean favorite;
 
+    private boolean available;
+
     private String coverImageUrl ;
 
     private String backCoverImageUrl ;
@@ -26,11 +28,12 @@ public class Book {
 
     public Book(){}
 
-    public Book( String title, String author, Category category, boolean favorite, String coverImageUrl, String backCoverImageUrl) {
+    public Book( String title, String author, Category category, boolean favorite, boolean available, String coverImageUrl, String backCoverImageUrl) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.favorite = favorite;
+        this.available = available;
         this.coverImageUrl = coverImageUrl;
         this.backCoverImageUrl = backCoverImageUrl;
     }
@@ -74,6 +77,10 @@ public class Book {
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
+
+    public boolean Available() {return available;}
+
+    public void setAvailable(boolean available) { this.available = available;}
 
     public String getCoverImageUrl() {
         return coverImageUrl;
