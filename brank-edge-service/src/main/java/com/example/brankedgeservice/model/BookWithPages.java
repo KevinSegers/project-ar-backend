@@ -5,13 +5,13 @@ import java.util.List;
 
 public class BookWithPages {
 
-    // TODO deze is nu opgesteld zodat het gehele boek in 1 keer wordt opgehaald
-
     private String bookTitle;
 
     private String author;
 
     private boolean favorite;
+
+    private boolean available;
 
     private String coverImageUrl ;
 
@@ -38,6 +38,7 @@ public class BookWithPages {
         setBookTitle(book.getTitle());
         setAuthor(book.getAuthor());
         setFavorite(book.isFavorite());
+        setAvailable(book.isAvailable());
         setCoverImageUrl(book.getCoverImageUrl());
         setBackCoverImageUrl(book.getBackCoverImageUrl());
         pagesFromBook = new ArrayList<>();
@@ -68,6 +69,14 @@ public class BookWithPages {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public String getCoverImageUrl() {

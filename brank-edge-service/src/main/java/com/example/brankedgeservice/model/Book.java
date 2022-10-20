@@ -10,6 +10,8 @@ public class Book {
 
     private boolean favorite;
 
+    private boolean available;
+
     private String coverImageUrl ;
 
     private String backCoverImageUrl ;
@@ -43,6 +45,14 @@ public class Book {
 
     public boolean isFavorite() {
         return favorite;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public void setFavorite(boolean favorite) {

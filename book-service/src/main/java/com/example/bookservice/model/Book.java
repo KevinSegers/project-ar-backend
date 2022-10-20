@@ -78,7 +78,7 @@ public class Book {
         this.favorite = favorite;
     }
 
-    public boolean Available() {return available;}
+    public boolean isAvailable() {return available;}
 
     public void setAvailable(boolean available) { this.available = available;}
 
