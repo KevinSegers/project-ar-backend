@@ -1,7 +1,7 @@
 package com.example.bookservice.model;
 
 public enum Category {
-    NIJNTJE,
-    BUMBA,
-    DRIBBEL
+    Nijntje,
+    Bumba,
+    Dribbel
 }
