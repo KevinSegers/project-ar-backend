@@ -26,11 +26,11 @@ public class BookWithPages {
         setCoverImageUrl(book.getCoverImageUrl());
         setBackCoverImageUrl(book.getBackCoverImageUrl());
         pagesFromBook = new ArrayList<>();
-        pages.forEach(page ->{
-            if (book.getTitle() == page.getBookTitle()) {
-                pagesFromBook.add(page);
-            }});
-        setPagesFromBook(pagesFromBook);
+//        pages.forEach(page ->{
+//            if (book.getTitle() == page.getBookTitle()) {
+//                pagesFromBook.add(page);
+//            }});
+        setPagesFromBook(pages);
 
     }
 

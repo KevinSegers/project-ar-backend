@@ -51,18 +51,22 @@ public class PageController {
         }
     }
 
-    @GetMapping("/pages/{bookTitle}")
-    public List<Page> getPageByBookTitle(@RequestBody String bookTitle){
-
+    @GetMapping("/pages/bookTitle/{bookTitle}")
+    public List<Page> getPageByBookTitle(@PathVariable String bookTitle){
         return pageRepository.findPagesByBookTitle(bookTitle);
+    }
+
+
+    @GetMapping("/pages/bookTitle/{bookTitle}/pageNumber/{pageNumber}")
+    public Page getPageByBookTitleAndPageNumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
+
+        return pageRepository.findPageByBookTitleAndPageNumber(bookTitle, pageNumber);
 
     }
 
-    @GetMapping("/pages/{bookTitle}/pagenumber/{pagenumber}")
-    public Page getPageByBookTitleAndPagenumber(@RequestBody String bookTitle, @RequestBody int pagenumber){
-
-        return pageRepository.findPageByBookTitleAndPagenumber(bookTitle, pagenumber);
-
+    @GetMapping("/pages")
+    public List<Page> getAllPages(){
+        return pageRepository.findAll();
     }
 
 

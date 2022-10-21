@@ -30,19 +30,20 @@ public class BookWithPagesController {
 
 
         ResponseEntity<List<Book>> responseEntityBooks =
-                restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/{category}",
+                restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category,
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
-                        }, category);
+                        });
 
         List<Book> books = responseEntityBooks.getBody();
 
 
         for (Book book: books) {
+            String bookTitle = book.getTitle();
            List<Page> pages =
-                    restTemplate.exchange("http://" + pageServiceBaseUrl + "pages/booktitle/{bookTitle}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
-                            }, book.getTitle()).getBody();
+                    restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/bookTitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
+                            }).getBody();
 
-           returnList.add(new BookWithPages(book, pages));
+            returnList.add(new BookWithPages(book, pages));
 
         }
 
@@ -50,9 +51,9 @@ public class BookWithPagesController {
 
     }
 
-    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pagenumber}")
-    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pagenumber){
-        Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/"+bookTitle+"/pagenumber/"+pagenumber, Page.class );
+    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}")
+    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
+        Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber, Page.class );
         return page;
     }
 

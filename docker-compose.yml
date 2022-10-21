@@ -19,7 +19,7 @@ services:
     page-service:
       depends_on:
        - mongo
-      image: KevinSegers/project-ar-backend/page-service
+      image: kevinsegers/project-ar-backend/tree/experimental/page-service
       ports:
         - 8052:8052
       links:
@@ -31,7 +31,7 @@ services:
     book-service:
       depends_on:
         - mysql
-      image: KevinSegers/project-ar-backend/book-service
+      image: kevinsegers/project-ar-backend/tree/experimental/book-service
       ports:
         - 8051:8051
       links:
@@ -45,7 +45,7 @@ services:
       depends_on:
         - book-service
         - page-service
-      image: KevinSegers/project-ar-backend/brank-edge-service
+      image: kevinsegers/project-ar-backend/tree/experimental/brank-edge-service
       ports:
         - 8050:8050
       links:

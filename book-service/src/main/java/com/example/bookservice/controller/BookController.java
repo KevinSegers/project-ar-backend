@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+@RestController
 public class BookController {
 
     @Autowired
@@ -27,7 +28,9 @@ public class BookController {
             bookRepository.save(new Book("Dribbel naar de boerderij","Eric Hill", Category.Dribbel, false,false, "https://i.postimg.cc/MZ7hXDHX/Dribbelnaardeboerderij.jpg", "https://i.postimg.cc/d3Yp47Hq/Dribbelnaardeboerderijachterkant.jpg"));
             bookRepository.save(new Book("Dribbel naar de bij opa en oma","Eric Hill", Category.Dribbel, false,false, "https://i.postimg.cc/QNcr1D48/Dribbelbijopaenoma.jpg", "https://i.postimg.cc/qqcVTchh/dribbelbijopaenomaachterkant.jpg"));
             bookRepository.save(new Book("Dribbel naar het ziekenhuis","Eric Hill", Category.Dribbel, false,false, "https://i.postimg.cc/W3rxGm7W/Dribbelnaarhetziekenhuis.jpg", "https://i.postimg.cc/43jrH2pH/Dribbelnaarhetziekenhuisachterkant.jpg"));
-        }
+
+            System.out.println("Books added to database");
+            }
     }
 
     @GetMapping("/books/title/{title}")
@@ -38,6 +41,11 @@ public class BookController {
     @GetMapping("/books/category/{category}")
     public List<Book> getBookByCategory(@PathVariable Category category){
         return bookRepository.findBooksByCategory(category);
+    }
+
+    @GetMapping("/books")
+    public List<Book> getBooks(){
+        return bookRepository.findAll();
     }
 
     @PostMapping("/books")
