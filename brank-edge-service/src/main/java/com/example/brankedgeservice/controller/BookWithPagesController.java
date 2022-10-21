@@ -1,9 +1,6 @@
 package com.example.brankedgeservice.controller;
 
-import com.example.brankedgeservice.model.Book;
-import com.example.brankedgeservice.model.BookWithPages;
-import com.example.brankedgeservice.model.Category;
-import com.example.brankedgeservice.model.Page;
+import com.example.brankedgeservice.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -27,7 +24,7 @@ public class BookWithPagesController {
     @Value("${bookservice.baseurl}")
     private String bookServiceBaseUrl;
 
-    @GetMapping("/books/category/{category}")
+    @GetMapping("/interactivebooks/category/{category}")
     public List<BookWithPages> getBooksByCategory(@PathVariable Category category){
         List<BookWithPages> returnList = new ArrayList<>();
 
@@ -42,7 +39,7 @@ public class BookWithPagesController {
 
         for (Book book: books) {
            List<Page> pages =
-                    restTemplate.exchange("http://" + pageServiceBaseUrl + "pages/{bookTitle}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
+                    restTemplate.exchange("http://" + pageServiceBaseUrl + "pages/booktitle/{bookTitle}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
                             }, book.getTitle()).getBody();
 
            returnList.add(new BookWithPages(book, pages));
@@ -53,7 +50,7 @@ public class BookWithPagesController {
 
     }
 
-    @GetMapping("/pages/book/{bookTitle}/page/{pagenumber}")
+    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pagenumber}")
     public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pagenumber){
         Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/"+bookTitle+"/pagenumber/"+pagenumber, Page.class );
         return page;
