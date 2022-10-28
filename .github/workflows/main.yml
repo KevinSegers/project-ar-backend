@@ -23,7 +23,7 @@ jobs:
 #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #        run: mvn -B -e -X verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kevinsegers_project-ar-backend_page-service
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        run: mvn -B -e -X verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kevinsegers_project-ar-backend_page-service
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_PAGE_SERVICE }}
