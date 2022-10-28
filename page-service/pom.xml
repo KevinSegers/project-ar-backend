@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<sonar.organization>kevinsegers</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.buildString>mvn -B -e -X verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kevinsegers_project-ar-backend_page-service</sonar.buildString>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb -->
